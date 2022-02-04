@@ -20,15 +20,7 @@ if(!empty($_POST['mot'])){
     }
 }
 
-/*if(!empty($_POST['mot'])){
-    $_SESSION['mot'] = $_POST['mot'];
-    $_SESSION['reload'] = 1;
-}
 
-if($_SESSION['reload'] == 1){
-    $motMasque = motMasque($_SESSION['mot']);
-    $_SESSION['reload'] = 2;
-}*/
 
 if(!empty($_POST['lettre'])){
     $_SESSION['lettre'] = $_POST['lettre'];
