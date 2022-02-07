@@ -56,7 +56,7 @@ if(!empty($_SESSION['chances'])){
     
     <?php if($_SESSION['motMasque'] == $_SESSION['mot']): ?>
 
-        <h1>Bravo, vous avez gagné :)</h1>
+        <h1>Bravo, vous avez gagné :) !</h1>
 
     <?php else: ?>
 
@@ -72,12 +72,13 @@ if(!empty($_SESSION['chances'])){
 
     <?php 
         evoMasque($_SESSION['lettre'], $_SESSION['mot'], $_SESSION['motMasque']);
-        echo $_SESSION['motMasque'];
     ?>
+
+    <h1><?=$_SESSION['motMasque']?></h1>
 
     <?php else: ?>
         
-        <h1>Vous avez perdu ahahah</h1>
+        <h1>Vous avez perdu !</h1>
     
     <?php endif; ?>   
 

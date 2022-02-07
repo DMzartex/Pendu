@@ -1,11 +1,23 @@
 /* import */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+body{
+    background-color: black;
+}
+
+h1, h2{
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+}
+
+h2{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
 
 .titre{
     margin-top: 20px;
     margin-bottom: 100px;
-    font-family: 'Press Start 2P', cursive;
 }
 
 .btn-lg{
@@ -17,4 +29,5 @@
 #footer{
     margin-top: 200px;
     font-family: 'Press Start 2P', cursive;
+    background-color: white;
 }
