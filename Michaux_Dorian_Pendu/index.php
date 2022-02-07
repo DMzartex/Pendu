@@ -12,6 +12,7 @@ require 'functions/evoMasque.php';
 require 'elements/header.php';
 
 
+
 if(!empty($_POST['mot'])){
     $_SESSION['mot'] = strtoupper($_POST['mot']);
     $_SESSION['reload'] = 1;
@@ -46,8 +47,8 @@ if(!empty($_SESSION['chances'])){
 <?php if(empty($_SESSION['mot'])): ?>
     
     <form action="index.php" method="post">
-        <input type="text" placeholder="Entrer votre mot :" name="mot" id="mot">
-        <input type="submit" value="Envoyer">
+        <input type="text" placeholder="Entrer votre mot :" name="mot" id="mot" class="form-control">
+        <input type="submit" value="Envoyer" class="btn btn-success btn-lg">
     </form>
 
 
@@ -62,8 +63,8 @@ if(!empty($_SESSION['chances'])){
     <?php if($_SESSION['chances'] != 0): ?>
 
     <form action="index.php" method="post">
-        <input type="text" placeholder="Entrer une lettre :" name="lettre" id="lettre">
-        <input type="submit" id="click" name="click" value="Envoyer">
+        <input type="text" placeholder="Entrer une lettre :" name="lettre" id="lettre" class="form-control">
+        <input type="submit" id="click" name="click" value="Envoyer" class="btn btn-success btn-lg">
     </form>
 
     <h2>Il vous reste <?=$_SESSION['chances']?> chances</h2>
@@ -83,3 +84,5 @@ if(!empty($_SESSION['chances'])){
     <?php endif; ?>
 
 <?php endif; ?>
+
+<?php require_once 'elements/footer.php'; ?>
