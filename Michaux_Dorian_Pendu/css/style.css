@@ -5,7 +5,7 @@ body{
     background-color: black;
 }
 
-h1, h2{
+h1, h2, h4{
     font-family: 'Press Start 2P', cursive;
     color: white;
 }
@@ -13,6 +13,10 @@ h1, h2{
 h2{
     margin-top: 20px;
     margin-bottom: 50px;
+}
+
+h4{
+    margin-top: 50px;
 }
 
 .titre{

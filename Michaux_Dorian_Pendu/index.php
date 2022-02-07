@@ -2,6 +2,7 @@
 session_start();
 $title = "Pendu 5TTI";
 $erreur = null;
+$erreurText = "";
 
 /* functions */
 
@@ -28,7 +29,7 @@ if(!empty($_POST['lettre'])){
         $_SESSION['lettre'] = strtoupper($_POST['lettre']);
         $erreur = true;
     }else{
-        echo "Vous ne pouvez entrer qu'une lettre !";
+        $erreurText = "Vous ne pouvez entrer qu'une lettre !";
         $erreur = false;
     }
 }else{
@@ -75,6 +76,8 @@ if(!empty($_SESSION['chances'])){
     ?>
 
     <h1><?=$_SESSION['motMasque']?></h1>
+
+    <h4><?=$erreurText?></h4>
 
     <?php else: ?>
         
