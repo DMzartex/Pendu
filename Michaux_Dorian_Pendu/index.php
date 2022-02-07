@@ -1,6 +1,8 @@
 <?php 
 session_start();
 $title = "Pendu 5TTI";
+$erreur = null;
+
 /* functions */
 
 require 'functions/motMasque.php';
@@ -9,25 +11,35 @@ require 'functions/evoMasque.php';
 /* elements */
 require 'elements/header.php';
 
-/* Quand je clic sur le bouton */
 
 if(!empty($_POST['mot'])){
-    $_SESSION['mot'] = $_POST['mot'];
+    $_SESSION['mot'] = strtoupper($_POST['mot']);
     $_SESSION['reload'] = 1;
     if($_SESSION['reload'] == 1){
         $_SESSION['motMasque'] = motMasque($_SESSION['mot']);
+        $_SESSION['chances'] = 10;
         $_SESSION['reload'] = 2;
     }
 }
 
-
-
 if(!empty($_POST['lettre'])){
-    $_SESSION['lettre'] = $_POST['lettre'];
+    if(strlen($_POST['lettre']) == 1){
+        $_SESSION['lettre'] = strtoupper($_POST['lettre']);
+        $erreur = true;
+    }else{
+        echo "Vous ne pouvez entrer qu'une lettre !";
+        $erreur = false;
+    }
 }else{
     $_SESSION['lettre'] = "";
 }
 
+if(!empty($_SESSION['chances'])){
+    if(!evoMasque($_SESSION['lettre'], $_SESSION['mot'], $_SESSION['motMasque']) && $erreur == true){
+         $_SESSION['chances'] = $_SESSION['chances'] - 1;
+    }
+}
+ 
 ?>
 
 
@@ -40,20 +52,34 @@ if(!empty($_POST['lettre'])){
 
 
 <?php else: ?>
+    
+    <?php if($_SESSION['motMasque'] == $_SESSION['mot']): ?>
+
+        <h1>Bravo, vous avez gagné :)</h1>
+
+    <?php else: ?>
+
+    <?php if($_SESSION['chances'] != 0): ?>
 
     <form action="index.php" method="post">
         <input type="text" placeholder="Entrer une lettre :" name="lettre" id="lettre">
-        <input type="submit" value="Envoyer">
+        <input type="submit" id="click" name="click" value="Envoyer">
     </form>
 
+    <h2>Il vous reste <?=$_SESSION['chances']?> chances</h2>
+
+
     <?php 
-        var_dump($_SESSION['mot']);
-        var_dump($_SESSION['lettre']);
-        var_dump($_SESSION['reload']);
         evoMasque($_SESSION['lettre'], $_SESSION['mot'], $_SESSION['motMasque']);
         echo $_SESSION['motMasque'];
     ?>
 
+    <?php else: ?>
+        
+        <h1>Vous avez perdu ahahah</h1>
+    
+    <?php endif; ?>   
 
+    <?php endif; ?>
 
 <?php endif; ?>
